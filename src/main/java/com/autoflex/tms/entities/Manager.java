@@ -13,30 +13,8 @@ public class Manager {
     @OneToMany(mappedBy = "manager")
     private List<Employee> employeeList;
 
-    @Column(name = "user_data")
+    @OneToOne(mappedBy = "manager")
     private User managerData;
 
-
-
-//    @Column(nullable = false)
-//    private String fullName;
-//
-//    @Column(nullable = false, unique = true)
-//    private String email;
-//
-//    @Column(nullable = false)
-//    private String password;
-//
-////    @Column(columnDefinition = "boolean default true")
-//    @Column
-//    private Boolean isActive;
-//
-////    @Column(columnDefinition = "timestamp default now()")
-//    @Column
-//    private LocalDateTime created;
-//
-////    @Column(columnDefinition = "timestamp default now()")
-//    @Column
-//    private LocalDateTime updated;
 }
 

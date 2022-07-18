@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -29,10 +28,6 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-    @ManyToOne
-    @JoinColumn(name = "manager_id", nullable = false)
-    private Manager manager;
-
 //    @Column(columnDefinition = "boolean default true")
     @Column
     private Boolean isActive;
@@ -44,5 +39,13 @@ public class User {
 //    @Column(columnDefinition = "timestamp default now()")
     @Column
     private LocalDateTime updated;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "manager_id", referencedColumnName = "manager_id")
+    private Manager manager;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    private Employee employee;
 }
 

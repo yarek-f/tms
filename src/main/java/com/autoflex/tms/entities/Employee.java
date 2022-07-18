@@ -4,10 +4,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Employee {
 
     @Id
@@ -22,25 +23,8 @@ public class Employee {
     @JoinColumn(name = "manager_id", nullable = false)
     private Manager manager;
 
-    @Column(nullable = false)
-    private String fullName;
+    @OneToOne(mappedBy = "employee")
+    private User userData;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(columnDefinition = "boolean default true")
-//    @Column
-    private Boolean isActive;
-
-//    @Column(columnDefinition = "timestamp default now()")
-    @Column
-    private LocalDateTime created;
-
-//    @Column(columnDefinition = "timestamp default now()")
-    @Column
-    private LocalDateTime updated;
 }
 

@@ -6,21 +6,25 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-//todo add BUGS class
-//todo add priority
-//todo add attachment files
+//todo add BUGS class √
+//todo add priority √
+//todo add attachment files √
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id", unique = true)
     private Long id;
 
-
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;//fixme
+    private Employee employee;
+
+    @OneToOne(mappedBy = "task")
+    private Bug bug;
 
     @Column(nullable = false)
     private String taskName;
@@ -30,6 +34,15 @@ public class Task {
 
     @Column
     private LocalDate deadline;
+
+    @Column
+    private boolean urgent;
+
+    @Column
+    private boolean important;
+
+    @Column //fixme ???
+    private String attachmentFile;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "task_status", nullable = false)
