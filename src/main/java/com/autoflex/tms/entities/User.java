@@ -1,14 +1,13 @@
 package com.autoflex.tms.entities;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
 @NoArgsConstructor
+@org.hibernate.annotations.Immutable
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,15 +27,12 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-//    @Column(columnDefinition = "boolean default true")
     @Column
     private Boolean isActive;
 
-//    @Column(columnDefinition = "timestamp default now()")
     @Column
     private LocalDateTime created;
 
-//    @Column(columnDefinition = "timestamp default now()")
     @Column
     private LocalDateTime updated;
 

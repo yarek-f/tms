@@ -1,6 +1,5 @@
 package com.autoflex.tms.entities;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity(name = "projects")
+@NoArgsConstructor
+@org.hibernate.annotations.Immutable
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +19,15 @@ public class Project {
     @Column(nullable = false)
     private String projectName;
 
-    @OneToMany
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> taskList;
 
-    //todo add list employee
-    @OneToMany
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Employee> employeeList;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "manager_id", referencedColumnName = "manager_id")
+    private Manager manager;
 
     @Column(nullable = false)
     private Boolean isActive;
@@ -31,7 +35,6 @@ public class Project {
     @Column(nullable = false)
     private String description;
 
-//    @Column(columnDefinition = "timestamp default now()")
     @Column
     private LocalDateTime created;
 
