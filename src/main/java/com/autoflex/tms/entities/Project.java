@@ -25,8 +25,7 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Employee> employeeList;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "manager_id", referencedColumnName = "manager_id")
+    @OneToOne(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private Manager manager;
 
     @Column(nullable = false)
@@ -44,5 +43,12 @@ public class Project {
     @Column(nullable = false)
     private LocalDate releaseDate;
 
+
+    public Project(String projectName, Boolean isActive, String description, LocalDate releaseDate) {
+        this.projectName = projectName;
+        this.isActive = isActive;
+        this.description = description;
+        this.releaseDate = releaseDate;
+    }
 }
 

@@ -6,9 +6,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-//todo add BUGS class √
-//todo add priority √
-//todo add attachment files √
 
 @Entity
 @NoArgsConstructor
@@ -53,11 +50,32 @@ public class Task {
     private Status status; //list of changed status
 
     @Column
-    private boolean isActive;
-
-    @Column
     private LocalDateTime created;
 
     @Column
     private LocalDateTime updated;
+
+    public Task(String taskName, String description, Employee employee, Project project, LocalDate deadline, boolean urgent, boolean important, Status status) {
+        this.taskName = taskName;
+        this.description = description;
+        this.employee = employee;
+        this.project = project;
+        this.deadline = deadline;
+        this.urgent = urgent;
+        this.important = important;
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", taskName='" + taskName + '\'' +
+                ", description='" + description + '\'' +
+                ", deadline=" + deadline +
+                ", urgent=" + urgent +
+                ", important=" + important +
+                ", status=" + status +
+                '}';
+    }
 }

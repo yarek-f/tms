@@ -17,10 +17,17 @@ public class Manager {
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Employee> employeeList;
 
-    @OneToOne(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User managerData;
 
-    @OneToOne(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id", referencedColumnName = "project_id")
     private Project project;
+
+    public Manager(User managerData, Project project) {
+        this.managerData = managerData;
+        this.project = project;
+    }
 }
 

@@ -36,12 +36,17 @@ public class User {
     @Column
     private LocalDateTime updated;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "manager_id", referencedColumnName = "manager_id")
+    @OneToOne(mappedBy = "managerData", cascade = CascadeType.ALL)
     private Manager manager;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToOne(mappedBy = "userData", cascade = CascadeType.ALL)
     private Employee employee;
+
+    public User(String fullName, String email, String password, Role role) {
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 }
 

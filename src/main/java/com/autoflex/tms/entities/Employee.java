@@ -26,8 +26,14 @@ public class Employee {
     @JoinColumn(name = "manager_id", nullable = false)
     private Manager manager;
 
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User userData;
 
+    public Employee(Project project, Manager manager, User userData) {
+        this.project = project;
+        this.manager = manager;
+        this.userData = userData;
+    }
 }
 
