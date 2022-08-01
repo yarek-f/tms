@@ -14,20 +14,16 @@ public class Manager {
     @Column(name = "manager_id")
     private Long id;
 
-    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "manager_id")
     private List<Employee> employeeList;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User managerData;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_id", referencedColumnName = "project_id")
-    private Project project;
-
-    public Manager(User managerData, Project project) {
+    public Manager(User managerData) {
         this.managerData = managerData;
-        this.project = project;
     }
 }
 

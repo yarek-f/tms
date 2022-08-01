@@ -16,18 +16,12 @@ public class Task {
     @Column(name = "task_id", unique = true)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "task_id")
+    private List<Bug> bugList;
 
-    @ManyToOne
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
-
-    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Bug> taskList;
-
-    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "task_id")
     private List<Attachment> attachmentList;
 
     @Column(nullable = false)
@@ -47,7 +41,7 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "task_status", nullable = false)
-    private Status status; //list of changed status
+    private Status status; //todo: list of changed status
 
     @Column
     private LocalDateTime created;
@@ -55,15 +49,80 @@ public class Task {
     @Column
     private LocalDateTime updated;
 
-    public Task(String taskName, String description, Employee employee, Project project, LocalDate deadline, boolean urgent, boolean important, Status status) {
+    public Task(String taskName, String description, LocalDate deadline, boolean urgent, boolean important, Status status) {
         this.taskName = taskName;
         this.description = description;
-        this.employee = employee;
-        this.project = project;
         this.deadline = deadline;
         this.urgent = urgent;
         this.important = important;
         this.status = status;
+    }
+
+    public Task(Long id, String taskName, String description, LocalDate deadline, boolean urgent, boolean important, Status status, LocalDateTime created, LocalDateTime updated) {
+        this.id = id;
+        this.taskName = taskName;
+        this.description = description;
+        this.deadline = deadline;
+        this.urgent = urgent;
+        this.important = important;
+        this.status = status;
+        this.created = created;
+        this.updated = updated;
+    }
+
+    public Task(String taskName, String description, LocalDate deadline, boolean urgent, boolean important, Status status, LocalDateTime created, LocalDateTime updated) {
+        this.taskName = taskName;
+        this.description = description;
+        this.deadline = deadline;
+        this.urgent = urgent;
+        this.important = important;
+        this.status = status;
+        this.created = created;
+        this.updated = updated;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public List<Bug> getBugList() {
+        return bugList;
+    }
+
+    public List<Attachment> getAttachmentList() {
+        return attachmentList;
+    }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDate getDeadline() {
+        return deadline;
+    }
+
+    public boolean isUrgent() {
+        return urgent;
+    }
+
+    public boolean isImportant() {
+        return important;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public LocalDateTime getUpdated() {
+        return updated;
     }
 
     @Override

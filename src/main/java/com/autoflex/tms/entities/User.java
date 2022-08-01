@@ -36,12 +36,6 @@ public class User {
     @Column
     private LocalDateTime updated;
 
-    @OneToOne(mappedBy = "managerData", cascade = CascadeType.ALL)
-    private Manager manager;
-
-    @OneToOne(mappedBy = "userData", cascade = CascadeType.ALL)
-    private Employee employee;
-
     public User(String fullName, String email, String password, Role role) {
         this.fullName = fullName;
         this.email = email;

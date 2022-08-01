@@ -14,10 +14,6 @@ public class Bug {
     @Column(name = "bug_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "task_id")
-    private Task task;
-
     @Column
     private String name;
 
@@ -45,7 +41,6 @@ public class Bug {
 
     @Column
     private LocalDateTime resolvedDate;
-
 
     public Bug(String name, boolean urgent, boolean important, String description, String detectedVersion) {
         this.name = name;

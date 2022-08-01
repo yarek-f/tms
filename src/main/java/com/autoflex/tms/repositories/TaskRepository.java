@@ -9,9 +9,9 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task,Long> {
 
     @Query(value = "select * FROM " +
-                    "((task inner join employee on task.employee_id = employee.employee_id) " +
-                    "inner join user on employee.user_id = user.user_id) " +
-                    "where user.email = ?1 ", nativeQuery = true)
+                    "task ts inner join employee em  on ts.employee_id = em.employee_id  " +
+                    "inner join `user` us on em.user_id = us.user_id " +
+                    "where us.email = ?1 ", nativeQuery = true)
     List<Task> findByEmployeeEmail(String email);
 
 }

@@ -19,14 +19,17 @@ public class Project {
     @Column(nullable = false)
     private String projectName;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id")
     private List<Task> taskList;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id")
     private List<Employee> employeeList;
 
-    @OneToOne(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Manager manager;
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "project_id")
+    private List<Manager> managers;
 
     @Column(nullable = false)
     private Boolean isActive;
