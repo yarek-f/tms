@@ -24,5 +24,38 @@ public class Attachment {
 
     @Column
     private LocalDateTime updated;
+
+    public Attachment(Long id, String name, LocalDateTime created, LocalDateTime updated) {
+        this.id = id;
+        this.name = name;
+        this.created = created;
+        this.updated = updated;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
+
+    @Override
+    public String toString() {
+        return "Attachment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                '}';
+    }
 }
 

@@ -1,11 +1,13 @@
 package com.autoflex.tms.services;
 
-import com.autoflex.tms.entities.Employee;
-import com.autoflex.tms.entities.Task;
+import com.autoflex.tms.dto.EmployeeDto;
+import com.autoflex.tms.mappers.Mapper;
 import com.autoflex.tms.repositories.EmployeeRepository;
-import com.autoflex.tms.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceIml implements EmployeeService {
@@ -14,25 +16,30 @@ public class EmployeeServiceIml implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
     @Override
-    public void createEmployee(Employee employee) {
-        employeeRepository.save(employee);
+    public void createEmployee(EmployeeDto employeeDto) {
+        employeeRepository.save(Mapper.convertToEmployee(employeeDto));
     }
 
     @Override
-    public Employee getEmployee(String email) {
-        return employeeRepository.readByUserData_Email(email);
+    public EmployeeDto getEmployee(String email) {
+        return Mapper.convertToEmployeeDto(employeeRepository.getByUserDataEmail(email));
     }
 
     @Override
-    public void updateEmployee(Employee employee, String email) { //fixme  ???
-//        employeeRepository.queryByUserData_EmailAndUserData(email, employee);
+    public void remove(String id) {
+        employeeRepository.deleteById(Long.valueOf(id));
     }
 
     @Override
-    public void deleteEmployee(String email) {
-        employeeRepository.readByUserData_Email(email);
+    public void update(EmployeeDto employeeDto, String id) {
+        employeeRepository.deleteById(Long.valueOf(id));
+        employeeRepository.save(Mapper.convertToEmployee(employeeDto));
     }
 
-    //todo crud methods
-
+    @Override
+    public List<EmployeeDto> findAll() {
+        return employeeRepository.findAll().stream()
+                .map(Mapper::convertToEmployeeDto)
+                .collect(Collectors.toList());
+    }
 }

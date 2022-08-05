@@ -27,10 +27,6 @@ public class Project {
     @JoinColumn(name = "project_id")
     private List<Employee> employeeList;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name = "project_id")
-    private List<Manager> managers;
-
     @Column(nullable = false)
     private Boolean isActive;
 
@@ -52,6 +48,52 @@ public class Project {
         this.isActive = isActive;
         this.description = description;
         this.releaseDate = releaseDate;
+    }
+
+    public Project(Long id, String projectName, Boolean isActive, String description, LocalDateTime created, LocalDateTime updated, LocalDate releaseDate) {
+        this.id = id;
+        this.projectName = projectName;
+        this.isActive = isActive;
+        this.description = description;
+        this.created = created;
+        this.updated = updated;
+        this.releaseDate = releaseDate;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 }
 

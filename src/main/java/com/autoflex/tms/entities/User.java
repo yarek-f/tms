@@ -42,5 +42,58 @@ public class User {
         this.password = password;
         this.role = role;
     }
+
+    public User(String fullName, String email, String password, Role role, Boolean isActive, LocalDateTime created, LocalDateTime updated) {
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.isActive = isActive;
+        this.created = created;
+        this.updated = updated;
+    }
+
+    public User(Long id, String fullName, String email, String password, Role role, Boolean isActive, LocalDateTime created, LocalDateTime updated) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.isActive = isActive;
+        this.created = created;
+        this.updated = updated;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
 }
 

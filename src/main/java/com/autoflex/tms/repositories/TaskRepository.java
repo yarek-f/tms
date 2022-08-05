@@ -12,6 +12,6 @@ public interface TaskRepository extends JpaRepository<Task,Long> {
                     "task ts inner join employee em  on ts.employee_id = em.employee_id  " +
                     "inner join `user` us on em.user_id = us.user_id " +
                     "where us.email = ?1 ", nativeQuery = true)
-    List<Task> findByEmployeeEmail(String email);
+    List<Task> findTasksByEmployeeEmail(String email);
 
 }

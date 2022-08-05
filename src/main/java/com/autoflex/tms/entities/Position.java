@@ -1,0 +1,5 @@
+package com.autoflex.tms.entities;
+
+public enum Position {
+    SENIOR_DEVELOPER, MIDDLE_DEVELOPER, JUNIOR_DEVELOPER, TRAINEE, TEAM_LEAD, TECH_LEAD, PRODUCT_MANAGER, PROJECT_MANAGER, BA, QA
+}

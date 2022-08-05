@@ -2,10 +2,6 @@ package com.autoflex.tms;
 
 import com.autoflex.tms.entities.*;
 import com.autoflex.tms.mappers.Mapper;
-import com.autoflex.tms.repositories.BugRepository;
-import com.autoflex.tms.repositories.EmployeeRepository;
-import com.autoflex.tms.repositories.ManagerRepository;
-import com.autoflex.tms.repositories.TaskRepository;
 import com.autoflex.tms.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @SpringBootApplication
 public class TmsApplication {
@@ -24,8 +19,7 @@ public class TmsApplication {
     }
 
     @Bean()
-    CommandLineRunner init(BugRepository bugRepository, TaskRepository taskRepository,
-                           ManagerRepository managerRepository, EmployeeRepository employeeRepository, TaskService taskService) {
+    CommandLineRunner init(TaskService taskService, BugService bugService, ProjectService projectService) {
         return args -> {
 
 //
@@ -40,27 +34,31 @@ public class TmsApplication {
 //            bugRepository.save(thirdB);
 //            Project project = new Project("TMS", manager, true, "project description", LocalDate.of(2022, 11, 11));
 //            Project project = new Project("TMS", true, "project description", LocalDate.of(2022, 11, 11));
-//            Manager manager = new Manager(new User("Manager Borys", "borys@gmail.com", "123456", Role.MANAGER));
-////            managerService.createManager(manager); fixme: doesn't create
+//            Project project2 = new Project("Hybris Lab", false, "project description 2", LocalDate.of(2022, 8, 30));
+//            projectService.createProject(Mapper.convertToGetAllProjectDto(project));
+//            projectService.createProject(Mapper.convertToGetAllProjectDto(project2));
+//            managerService.createManager(manager); fixme: doesn't create
 //
-//            managerRepository.save(manager);
 //            Employee employee = new Employee(project, manager, new User("Spunch Bob", "bob@gmail.com", "123456", Role.EMPLOYEE));
 //            Employee employee2 = new Employee(project, manager, new User("Ann", "ann@gmail.com", "123456", Role.EMPLOYEE));
 //            employeeRepository.save(employee);
 //            employeeRepository.save(employee2);
-            Task task = new Task("first task", "description", LocalDate.of(2022, 9, 3),
-                    false, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
-            Task task2 = new Task("second task", "description 2", LocalDate.of(2022, 7, 31),
-                    true, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
-            Task task3 = new Task("third task", "description 3", LocalDate.of(2022, 7, 31),
-                    true, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
-
-
-            taskService.createTask(Mapper.convertToTaskDto(task));
-            taskService.createTask(Mapper.convertToTaskDto(task2));
-            taskService.createTask(Mapper.convertToTaskDto(task3));
+//            todo
+//            Task task = new Task("first task", "description", LocalDate.of(2022, 9, 3),
+//                    false, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
+//            Task task2 = new Task("second task", "description 2", LocalDate.of(2022, 7, 31),
+//                    true, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
+//            Task task3 = new Task("third task", "description 3", LocalDate.of(2022, 7, 31),
+//                    true, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
 //
-//            List<Task> list  = taskRepository.findByEmployeeEmail("ann@gmail.com");
+//
+//            taskService.createTask(Mapper.convertToGetAllTaskDto(task));
+//            taskService.createTask(Mapper.convertToGetAllTaskDto(task2));
+//            taskService.createTask(Mapper.convertToGetAllTaskDto(task3));
+//            bugService.createBug(Mapper.convertToGetAllBugDto(firstB));
+//            bugService.createBug(Mapper.convertToGetAllBugDto(secondB));
+//          todo
+// //           List<Task> list  = taskRepository.findTasksByEmployeeEmail("ann@gmail.com");
 ////            List<Task> list  = taskRepository.findAll();
 //            for (Task t : list){
 //                System.out.println(t);
