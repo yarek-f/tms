@@ -5,11 +5,10 @@ import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-public final class GetAllBugDto {
+public final class GetAllBugDto { //response
     @NotNull
     @Positive
     private final String id;
-
     @NotNull(message = "bugName cannot be null")
     private final String bugName;
     @NotNull

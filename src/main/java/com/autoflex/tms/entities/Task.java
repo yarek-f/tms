@@ -16,7 +16,7 @@ public class Task {
     @Column(name = "task_id", unique = true)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL) //fixme: delete it
     @JoinColumn(name = "task_id")
     private List<Bug> bugList;
 

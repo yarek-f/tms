@@ -17,6 +17,8 @@ public class Bug {
     @Column
     private String bugName;
 
+    //todo: private Task task;
+
     @Enumerated(EnumType.STRING)
     @Column
     private Status status;

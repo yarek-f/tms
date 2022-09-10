@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
-public final class CreateBugDto {
+public final class CreateBugDto { //request
     @NotNull(message = "bugName cannot be null")
     private final String bugName;
     @NotNull
@@ -30,7 +30,6 @@ public final class CreateBugDto {
         this.detectedDate = detectedDate;
     }
 
-
     public String getBugName() {
         return bugName;
     }
@@ -54,7 +53,6 @@ public final class CreateBugDto {
     public String getDetectedVersion() {
         return detectedVersion;
     }
-
 
     public String getDetectedDate() {
         return detectedDate;
