@@ -2,6 +2,7 @@ package com.autoflex.tms.services;
 
 import com.autoflex.tms.dto.taskDto.CreateTaskDto;
 import com.autoflex.tms.dto.taskDto.GetAllTaskDto;
+import com.autoflex.tms.entities.Task;
 import com.autoflex.tms.mappers.Mapper;
 import com.autoflex.tms.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,13 @@ public class TaskServiceIml implements TaskService {
     private TaskRepository taskRepository;
 
     @Override
-    public void createTask(CreateTaskDto createTaskDto) {
-        taskRepository.save(Mapper.convertToTask(createTaskDto));
+    public Long createTask(CreateTaskDto createTaskDto) {
+        return taskRepository.save(Mapper.convertToTask(createTaskDto)).getId();
+    }
+
+    @Override
+    public GetAllTaskDto getById(Long id){
+        return Mapper.convertToGetAllTaskDto(taskRepository.findById(id).orElseThrow());
     }
 
     @Override

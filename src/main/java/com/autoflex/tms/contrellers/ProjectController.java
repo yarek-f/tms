@@ -1,7 +1,6 @@
 package com.autoflex.tms.contrellers;
 
 import com.autoflex.tms.dto.projectDto.CreateProjectDto;
-import com.autoflex.tms.dto.projectDto.GetAllProjectDto;
 import com.autoflex.tms.dto.projectDto.ProjectShortResponseDTO;
 import com.autoflex.tms.mappers.Mapper;
 import com.autoflex.tms.services.ProjectService;

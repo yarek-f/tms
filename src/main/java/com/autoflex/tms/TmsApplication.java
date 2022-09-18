@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 //import java.time.LocalDate;
 //import java.time.LocalDateTime;
@@ -46,17 +47,20 @@ public class TmsApplication {
 //            employeeRepository.save(employee);
 //            employeeRepository.save(employee2);
 //            todo
-//            Task task = new Task("first task", "description", LocalDate.of(2022, 9, 3),
-//                    false, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
-//            Task task2 = new Task("second task", "description 2", LocalDate.of(2022, 7, 31),
-//                    true, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
-//            Task task3 = new Task("third task", "description 3", LocalDate.of(2022, 7, 31),
-//                    true, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
-//
-//
-//            taskService.createTask(Mapper.convertToGetAllTaskDto(task));
-//            taskService.createTask(Mapper.convertToGetAllTaskDto(task2));
-//            taskService.createTask(Mapper.convertToGetAllTaskDto(task3));
+            Task task = new Task("first task", "description", LocalDate.of(2022, 9, 3),
+                    false, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
+            Task task2 = new Task("second task", "description 2", LocalDate.of(2022, 7, 31),
+                    true, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
+            Task task3 = new Task("third task", "description 3", LocalDate.of(2022, 7, 31),
+                    true, true, Status.NEW, LocalDateTime.now().withNano(0), LocalDateTime.now().withNano(0));
+
+
+            Long a = taskService.createTask(Mapper.convertToCreateTaskDto(task));
+            System.out.println("Long id \'a\' = " + a);
+            a = taskService.createTask(Mapper.convertToCreateTaskDto(task2));
+            System.out.println("Long id \'a\' = " + a);
+            a = taskService.createTask(Mapper.convertToCreateTaskDto(task3));
+            System.out.println("Long id \'a\' = " + a);
 //            bugService.createBug(Mapper.convertToGetAllBugDto(firstB));
 //            bugService.createBug(Mapper.convertToGetAllBugDto(secondB));
 //          todo

@@ -6,7 +6,8 @@ import com.autoflex.tms.dto.taskDto.GetAllTaskDto;
 import java.util.List;
 
 public interface TaskService {
-    void createTask(CreateTaskDto createTaskDto);
+    Long createTask(CreateTaskDto createTaskDto);
+    GetAllTaskDto getById(Long id);
     List<GetAllTaskDto> findTasksByEmail(String email);
     void remove(String id);
     void update(CreateTaskDto createTaskDto, String id);
