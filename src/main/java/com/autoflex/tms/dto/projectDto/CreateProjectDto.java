@@ -1,5 +1,7 @@
 package com.autoflex.tms.dto.projectDto;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +11,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public  class CreateProjectDto {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CreateProjectDto {
     //    @NotNull
     private String projectName;
     //    @NotNull
@@ -18,6 +21,8 @@ public  class CreateProjectDto {
     private String description;
     //@FutureOrPresent //fixme!!!
     private String releaseDate;
+
+
 
 
 }

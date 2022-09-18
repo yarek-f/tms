@@ -5,6 +5,7 @@ import com.autoflex.tms.dto.bugDto.CreateBugDto;
 import com.autoflex.tms.dto.bugDto.GetAllBugDto;
 import com.autoflex.tms.dto.projectDto.CreateProjectDto;
 import com.autoflex.tms.dto.projectDto.GetAllProjectDto;
+import com.autoflex.tms.dto.projectDto.ProjectShortResponseDTO;
 import com.autoflex.tms.dto.taskDto.CreateTaskDto;
 import com.autoflex.tms.dto.taskDto.GetAllTaskDto;
 import com.autoflex.tms.dto.userDto.CreateUserDto;
@@ -91,13 +92,17 @@ public class Mapper {
 
     public static GetAllProjectDto convertToGetAllProjectDto(Project project) {
         return new GetAllProjectDto(String.valueOf(project.getId()), project.getProjectName(), String.valueOf(project.getActive()),
-                    project.getDescription(), project.getCreated().toString(), project.getUpdated().toString(),
+                    project.getDescription(), project.getCreated() != null ? project.getCreated().toString() : null, project.getUpdated() != null ? project.getUpdated().toString():null,
                     project.getReleaseDate().toString());
     }
 
     public static CreateProjectDto convertToCreateProjectDto(Project project) {
         return new CreateProjectDto(project.getProjectName(), String.valueOf(project.getActive()), project.getDescription(),
                     project.getReleaseDate().toString());
+    }
+
+    public static ProjectShortResponseDTO convertToProjectShortResponseDTO(GetAllProjectDto getAllProjectDto) {
+        return new ProjectShortResponseDTO(getAllProjectDto.getId(), getAllProjectDto.getProjectName(), getAllProjectDto.getIsActive(), getAllProjectDto.getDescription(), getAllProjectDto.getReleaseDate());
     }
 
     public static GetAllUserDto convertToGetAllUserDto(User user) {
@@ -164,4 +169,6 @@ public class Mapper {
                 LocalDateTime.parse(attachmentDto.getCreated(), localDateTimeFormatter),
                 LocalDateTime.parse(attachmentDto.getUpdated(), localDateTimeFormatter));
     }
+
+
 }

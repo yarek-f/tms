@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDate;
+
 //import java.time.LocalDate;
 //import java.time.LocalDateTime;
 
@@ -32,11 +34,11 @@ public class TmsApplication {
 //            bugRepository.save(secondB);
 //            bugRepository.save(secondBB);
 //            bugRepository.save(thirdB);
-//            Project project = new Project("TMS", manager, true, "project description", LocalDate.of(2022, 11, 11));
-//            Project project = new Project("TMS", true, "project description", LocalDate.of(2022, 11, 11));
-//            Project project2 = new Project("Hybris Lab", false, "project description 2", LocalDate.of(2022, 8, 30));
-//            projectService.createProject(Mapper.convertToGetAllProjectDto(project));
-//            projectService.createProject(Mapper.convertToGetAllProjectDto(project2));
+            //Project project = new Project("TMS", manager, true, "project description", LocalDate.of(2022, 11, 11));
+            Project project = new Project("TMS", true, "project description", LocalDate.of(2022, 11, 11));
+            Project project2 = new Project("Hybris Lab", false, "project description 2", LocalDate.of(2022, 8, 30));
+            projectService.createProject(Mapper.convertToCreateProjectDto(project));
+            projectService.createProject(Mapper.convertToCreateProjectDto(project2));
 //            managerService.createManager(manager); fixme: doesn't create
 //
 //            Employee employee = new Employee(project, manager, new User("Spunch Bob", "bob@gmail.com", "123456", Role.EMPLOYEE));
